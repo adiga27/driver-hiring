@@ -38,12 +38,19 @@ const userSchema = mongoose.Schema(
       },
     },
     role: {
-      type: String,
-      enum: ['user', 'driver', 'admin'],
-      required: [true, 'Please tell us your role!'],
+      type: {
+        type: String,
+        enum: ['user', 'driver', 'admin'],
+        required: [true, 'Please tell us your role!'],
+      },
+      driverId: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Driver',
+      },
     },
     contact: {
       type: Number,
+      unique: true,
       required: [true, 'Please tell us your Contact!'],
     },
     passwordChangedAt: Date,

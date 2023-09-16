@@ -33,6 +33,7 @@ const driverSchema = new mongoose.Schema(
     },
     contact: {
       type: Number,
+      unique: true,
       required: [true, 'Please tell us your contact!'],
     },
     rating: {

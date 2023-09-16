@@ -42,11 +42,10 @@ exports.getAll = (Model) =>
     });
   });
 
-exports.createOne = (Model) =>
+exports.createOne = (Model, otherModel) =>
   catchAsync(async (req, res, next) => {
     let doc;
-    if (req.user && req.user.role === 'driver') {
-      req.body.id = req.user.id;
+    if (req.user?.role.type === 'driver') {
       req.body.name = req.user.name;
       req.body.photo = req.user.photo;
       req.body.contact = req.user.contact;
@@ -54,6 +53,14 @@ exports.createOne = (Model) =>
       doc = await Model.create(req.body);
     } else {
       doc = await Model.create(req.body);
+    }
+
+    if (otherModel) {
+      const otherDoc = await otherModel.findOneAndUpdate(
+        { contact: req.user.contact },
+        { role: { type: 'driver', driverId: doc._id } },
+        { new: true, runValidators: true }
+      );
     }
 
     res.status(201).json({
