@@ -8,6 +8,7 @@ router.use(authController.protect);
 
 router.get(
   '/checkout-session/:driverId',
+  authController.notRestrictTo('admin', 'user'),
   bookingController.getCheckoutSession
   // bookingController.createBookingCheckout
 );

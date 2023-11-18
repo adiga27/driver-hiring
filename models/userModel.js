@@ -68,8 +68,14 @@ const userSchema = mongoose.Schema(
   }
 );
 
-userSchema.virtual('booking', {
+userSchema.virtual('bookings', {
   ref: 'Booking',
+  foreignField: 'user',
+  localField: '_id',
+});
+
+userSchema.virtual('reviews', {
+  ref: 'Review',
   foreignField: 'user',
   localField: '_id',
 });

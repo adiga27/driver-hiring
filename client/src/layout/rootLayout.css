@@ -6,6 +6,8 @@
   align-items: center;
   padding: 0 8rem;
   overflow: hidden;
+  position: fixed;
+  z-index: 999;
 }
 
 nav {
@@ -25,6 +27,7 @@ img {
   text-decoration: none;
   color: #fff;
   font-size: 25px;
+  height: 48px;
 }
 .navlink:hover,
 .navlink:active {

@@ -5,7 +5,9 @@ const catchAsync = require('./../util/catchAsync');
 exports.getOne = (Model, popOptions) =>
   catchAsync(async (req, res, next) => {
     let query = Model.findById(req.params.id);
-    if (popOptions) query = query.populate(popOptions);
+    if (popOptions) {
+      query = query.populate(popOptions);
+    }
     const doc = await query;
 
     if (!doc) {
@@ -21,22 +23,34 @@ exports.getOne = (Model, popOptions) =>
   });
 
 exports.getAll = (Model) =>
-  catchAsync(async (req, res, next) => {
+  catchAsync(async (req, res) => {
     let filter = {};
     if (req.params.driverId) filter = { driver: req.params.driverId };
+
+    const totalFilteredDoc = new APIFeatures(
+      Model.find(filter),
+      req.query
+    ).filter();
+
+    const totalDoc = await totalFilteredDoc.query.count();
 
     const features = new APIFeatures(Model.find(filter), req.query)
       .filter()
       .sort()
       .limitFields()
-      .paginate();
+      .paginate(totalDoc);
 
     const doc = await features.query;
+
+    const { next, prev } = features;
 
     res.status(200).json({
       status: 'success',
       results: doc.length,
       data: {
+        prev,
+        next,
+        total: totalDoc,
         data: doc,
       },
     });

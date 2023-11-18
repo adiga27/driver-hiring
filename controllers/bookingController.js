@@ -13,10 +13,8 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   // 2) Create checkout session
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
-    success_url: `${req.protocol}://${req.get(
-      'host'
-    )}/my-drivers?alert=booking`,
-    cancel_url: `${req.protocol}://${req.get('host')}/driver/${driver.slug}`,
+    success_url: `${req.protocol}://${req.get('host')}/drivers`,
+    cancel_url: `${req.protocol}://${req.get('host')}/drivers/${driver._id}`,
     customer_email: req.user.email,
     client_reference_id: req.params.driverId,
     mode: 'payment',
@@ -28,7 +26,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
             name: `${driver.name} Driver`,
             // description: driver.summary,
             images: [
-              `${req.protocol}://${req.get('host')}/public/img/drivers/${
+              `${req.protocol}://${req.get('host')}/img/drivers/${
                 driver.photo
               }`,
             ],
@@ -90,8 +88,13 @@ const createBookingCheckout = async (session) => {
   const driver = session.client_reference_id;
   const user = (await User.findOne({ email: session.customer_email })).id;
   const price = session.amount_total;
-  const paymentIntent = session.payment_intent;
-  await Booking.create({ driver, user, price, paymentIntent });
+  // const paymentIntent = session.payment_intent;
+  await Booking.create({
+    driver,
+    user,
+    price,
+    // paymentIntent
+  });
 };
 
 exports.webhookCheckout = (req, res, next) => {

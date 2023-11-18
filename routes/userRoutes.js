@@ -2,7 +2,6 @@ const express = require('express');
 const userController = require('./../controllers/userController');
 const authController = require('./../controllers/authController');
 const driverController = require('./../controllers/driverController');
-const bookingRouter = require('./../routes/bookingRoutes');
 
 const router = express.Router();
 
@@ -39,7 +38,7 @@ router.get(
   driverController.getOneDriver
 );
 
-router.use('/hireDriver/:driverId/booking', bookingRouter);
+// router.use('/hireDriver/:driverId/booking', bookingRouter);
 
 router
   .route('/:id')

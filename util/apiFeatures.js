@@ -1,5 +1,7 @@
 class APIFeatures {
   constructor(query, queryString) {
+    this.next;
+    this.prev;
     this.query = query;
     this.queryString = queryString;
   }
@@ -40,13 +42,18 @@ class APIFeatures {
     return this;
   }
 
-  paginate() {
+  paginate(length) {
     const page = this.queryString.page * 1 || 1;
     const limit = this.queryString.limit * 1 || 6;
     const skip = (page - 1) * limit;
+    const endPage = page * limit;
+    const startPage = (page - 1) * limit;
+
+    if (endPage < length) this.next = page + 1;
+
+    if (startPage > 1) this.prev = page - 1;
 
     this.query = this.query.skip(skip).limit(limit);
-
     return this;
   }
 }

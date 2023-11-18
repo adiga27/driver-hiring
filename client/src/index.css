@@ -45,7 +45,7 @@ body {
 
 .main {
   background-color: #f7f7f7;
-  padding: 8rem 6rem;
+  padding: 15rem 6rem 8rem 6rem;
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
@@ -769,6 +769,7 @@ body {
   display: flex;
 }
 .user-view__menu {
+  align-items: start;
   -webkit-box-flex: 32rem;
   -ms-flex: 32rem 0 0px;
   flex: 32rem 0 0;
@@ -863,6 +864,14 @@ body {
   -ms-flex-align: center;
   align-items: center;
 }
+
+.profile-img {
+  align-self: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
 @media only screen and (max-width: 37.5em) {
   .nav {
     -webkit-box-orient: vertical;
@@ -1070,12 +1079,19 @@ body {
   border-bottom: 1px solid currentColor;
 }
 
-.card-container {
+.card-container__driver {
   max-width: 120rem;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 7rem;
+}
+.card-container__booking {
+  max-width: 150rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 7.5rem;
 }
 
 .card {
@@ -1263,9 +1279,16 @@ body {
   color: #bbb;
 }
 
-.form__group:not(:last-child) {
+.form__flex {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   margin-bottom: 2.5rem;
+  gap: 2rem;
 }
+
+/* .form__group {
+  margin-bottom: 2.5rem;
+} */
 
 .form__label {
   display: block;
@@ -1326,4 +1349,8 @@ body {
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
   -webkit-transform: translateY(-2px);
   transform: translateY(-2px);
+}
+
+.booking-container {
+  padding: 8rem 7.5rem;
 }

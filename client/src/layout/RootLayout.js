@@ -1,26 +1,16 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import './rootLayout.css';
+import Footer from '../components/root_components/Footer';
+import Header from '../components/root_components/Header';
 
-const RootLayout = () => {
+const RootLayout = ({ cookies, photo, removeCookies }) => {
   return (
     <div className="root-layout">
-      <header className="header">
-        <NavLink to="/">
-          <img src="../img/logo.png" alt="Logo" className="logo" />
-        </NavLink>
-        <nav>
-          <NavLink to="login" className="navlink login">
-            Login
-          </NavLink>
-          <NavLink to="signup" className="navlink signup">
-            Sign Up
-          </NavLink>
-        </nav>
-      </header>
-
-      <main>
+      <Header cookies={cookies} photo={photo} removeCookies={removeCookies} />
+      <main className="main">
         <Outlet />
       </main>
+      <Footer />
     </div>
   );
 };
