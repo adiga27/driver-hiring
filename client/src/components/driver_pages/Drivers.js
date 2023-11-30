@@ -9,7 +9,7 @@ export default function Drivers() {
     <>
       <div
         className={`card-container${
-          context ? (context[0].user ? '__booking' : '__driver') : '__driver'
+          context ? (context[0]?.user ? '__booking' : '__driver') : '__driver'
         }`}
       >
         {context?.map((driver) => {

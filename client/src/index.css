@@ -1354,3 +1354,35 @@ body {
 .booking-container {
   padding: 8rem 7.5rem;
 }
+.driver-search {
+  display: grid;
+  gap: 4rem;
+  /* justify-content: space-between; */
+  grid-template-columns: 1fr 0.9fr 0.1fr;
+  align-items: center;
+  margin: 0rem 1rem 4rem 1rem;
+}
+.driver-filter {
+  display: grid;
+  grid-template-columns: 1fr 12rem;
+  gap: 2rem;
+}
+.filters {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 3rem;
+}
+.filters select,
+.sort {
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1.8rem;
+  background-color: #f7f7f7;
+  color: #2e864b;
+  font-weight: 400;
+}
+.filters select:focus,
+.sort:focus {
+  outline: none;
+}

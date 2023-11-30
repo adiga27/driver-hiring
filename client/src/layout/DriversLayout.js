@@ -83,7 +83,7 @@ export default function DriversLayout({ cookies }) {
       (prev) => {
         prev.set(
           'place',
-          submitPlace[0].toUpperCase() + submitPlace.slice(1).toLowerCase()
+          submitPlace[0]?.toUpperCase() + submitPlace?.slice(1).toLowerCase()
         );
         return prev;
       },
@@ -118,61 +118,65 @@ export default function DriversLayout({ cookies }) {
           }}
         >
           <input
-            className="form__input"
+            className="form__input driver-place"
             type="text"
             placeholder="User's Place"
             onChange={(e) => setSubmitPlace(e.target.value)}
             value={submitPlace}
+            required
           />
           <button className="btn btn--green">Submit</button>
         </form>
-        <select
-          onChange={(e) => handleFilters(e, 'price')}
-          defaultValue={searchParams.get('price')}
-        >
-          <option value="">Price</option>
-          <option value="100">{'<=₹100'}</option>
-          <option value="500">{'<=₹500'}</option>
-          <option value="1000">{'<=₹1000'}</option>
-          <option value="1500">{'<=₹1500'}</option>
-          <option value="2000">{'<=₹2000'}</option>
-          <option value="2001">{'>=₹2000'}</option>
-        </select>
-        <select
-          onChange={(e) => handleFilters(e, 'drives')}
-          defaultValue={searchParams.get('drives')}
-        >
-          <option value="">Drives</option>
-          <option value="Car">Car</option>
-          <option value="Bus">Bus</option>
-          <option value="Truck">Truck</option>
-        </select>
-        <select
-          onChange={(e) => handleFilters(e, 'pricePerKm')}
-          defaultValue={searchParams.get('pricePerKm')}
-        >
-          <option value="">Price/Km</option>
-          <option value="5">{'<=₹5'}</option>
-          <option value="8">{'<=₹8'}</option>
-          <option value="10">{'<=₹10'}</option>
-          <option value="12">{'<=₹12'}</option>
-          <option value="15">{'<=₹15'}</option>
-          <option value="16">{'>=₹15'}</option>
-        </select>
-        <select
-          onChange={(e) => handleFilters(e, 'rating')}
-          defaultValue={searchParams.get('rating')}
-        >
-          <option value="">Rating</option>
-          <option value="4.5">{'>=4.5'}</option>
-          <option value="4">{'>=4.0'}</option>
-          <option value="3.5">{'>=3.5'}</option>
-          <option value="3.0">{'>=3.0'}</option>
-          <option value="2.0">{'>=2.0'}</option>
-        </select>
+        <div className="filters">
+          <select
+            onChange={(e) => handleFilters(e, 'price')}
+            defaultValue={searchParams.get('price')}
+          >
+            <option value="">Price</option>
+            <option value="100">{'<=₹100'}</option>
+            <option value="500">{'<=₹500'}</option>
+            <option value="1000">{'<=₹1000'}</option>
+            <option value="1500">{'<=₹1500'}</option>
+            <option value="2000">{'<=₹2000'}</option>
+            <option value="2001">{'>=₹2000'}</option>
+          </select>
+          <select
+            onChange={(e) => handleFilters(e, 'drives')}
+            defaultValue={searchParams.get('drives')}
+          >
+            <option value="">Drives</option>
+            <option value="Car">Car</option>
+            <option value="Bus">Bus</option>
+            <option value="Truck">Truck</option>
+          </select>
+          <select
+            onChange={(e) => handleFilters(e, 'pricePerKm')}
+            defaultValue={searchParams.get('pricePerKm')}
+          >
+            <option value="">Price/Km</option>
+            <option value="5">{'<=₹5'}</option>
+            <option value="8">{'<=₹8'}</option>
+            <option value="10">{'<=₹10'}</option>
+            <option value="12">{'<=₹12'}</option>
+            <option value="15">{'<=₹15'}</option>
+            <option value="16">{'>=₹15'}</option>
+          </select>
+          <select
+            onChange={(e) => handleFilters(e, 'rating')}
+            defaultValue={searchParams.get('rating')}
+          >
+            <option value="">Rating</option>
+            <option value="4.5">{'>=4.5'}</option>
+            <option value="4">{'>=4.0'}</option>
+            <option value="3.5">{'>=3.5'}</option>
+            <option value="3.0">{'>=3.0'}</option>
+            <option value="2.0">{'>=2.0'}</option>
+          </select>
+        </div>
         <select
           onChange={(e) => handleFilters(e, 'sort')}
           defaultValue={searchParams.get('sort')}
+          className="sort"
         >
           <option value="">Sort</option>
           <option value="price">Ascending Price</option>
@@ -188,6 +192,7 @@ export default function DriversLayout({ cookies }) {
         <select
           onChange={(e) => handleFilters(e, 'limit')}
           defaultValue={searchParams.get('limit')}
+          className="sort"
         >
           <option value="6">6</option>
           <option
@@ -228,12 +233,14 @@ export default function DriversLayout({ cookies }) {
           value="prev"
           disabled={!drivers.prev ? true : false}
           onClick={(e) => handleFilters(e, 'page')}
+          className="btn btn--green"
         >{`< Prev`}</button>
-        {searchParams.get('page')}
+        <span className="page-number">{searchParams.get('page')}</span>
         <button
           value="next"
           disabled={!drivers.next ? true : false}
           onClick={(e) => handleFilters(e, 'page')}
+          className="btn btn--green"
         >{`Next >`}</button>
       </div>
     </>
