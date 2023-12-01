@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 export default function Driver({ cookies }) {
   const { driverId } = useParams();
@@ -43,59 +43,53 @@ export default function Driver({ cookies }) {
   return (
     <>
       <section className="section-header">
-        <div className="header__hero">
-          <div className="header__hero-overlay">&nbsp;</div>
-          <img
-            className="header__hero-img"
-            src={`../img/drivers/${
-              driver.drives ? driver.drives + '.webp' : 'default.jpg'
-            }`}
-            alt="#{driver.name}"
-          />
-        </div>
         <div className="heading-box">
+          <div className="heading-img__box">
+            <img
+              src={`../img/drivers/${
+                driver.photo ? driver.photo : 'default.jpg'
+              }`}
+              alt={`${driver?.name}`}
+              className="heading-img"
+            />
+          </div>
           <h1 className="heading-primary">
             <span>{driver.name}</span>
           </h1>
-          <div className="heading-box__group">
-            {/* <!-- .heading-box__detail -->
-                <!--   <svg className="heading-box__icon"> -->
-                <!--     <use xlink:href="/img/icons.svg#icon-clock"></use> -->
-                <!--   </svg> -->
-                <!--   <span className="heading-box__text">#{driver.duration} days</span> -->
-                <!-- .heading-box__detail -->
-                <!--   <svg className="heading-box__icon"> -->
-                <!--     <use xlink:href="/img/icons.svg#icon-map-pin"></use> -->
-                <!--   </svg> -->
-                <!--   <span className="heading-box__text">driver.startLocation.description</span>  */}
+        </div>
+        <div className="overview-box">
+          <h2 className="overview-heading">Details</h2>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores
+            magni, accusamus nesciunt sed labore animi, consequuntur consequatur
+            facere ab quis eum? Non quam laborum dolorem temporibus!
+            Perspiciatis ab cupiditate optio.
+          </p>
+          <div className="overview-driver-flex ">
+            <ion-icon name="location-outline"></ion-icon>
+            <span>{driver.place}</span>
+          </div>
+          <div className="overview-driver-flex ">
+            <ion-icon name="car-sport-outline"></ion-icon>
+            <span>{driver.drives}</span>
+          </div>
+          <div className="overview-driver-flex ">
+            <ion-icon name="card-outline"></ion-icon>
+            <span>₹{driver.price}/minimum</span>
+          </div>
+          <div className="overview-driver-flex ">
+            <ion-icon name="star-half-outline"></ion-icon>
+            <span>{driver.rating}/5</span>
+          </div>
+          <div className="overview-driver-flex ">
+            <ion-icon name="cash-outline"></ion-icon>
+            <span>₹{driver.pricePerKm}/km</span>
           </div>
         </div>
       </section>
-      <section className="section-description">
-        <div className="overview-box">
-          <div>
-            <div className="overview-box__group">
-              <h2 className="heading-secondary ma-bt-lg">Quick facts</h2>
-              {/* <!-- - const date = driver.startDates[0].toLocaleString('en-us', {month: 'long', year: 'numeric'}) -->
-                  <!-- +overviewBox('Next date', date, 'calendar') -->
-                  <!-- +overviewBox('Difficulty', driver.difficulty, 'trending-up') -->
-                  <!-- +overviewBox('Participants', `${driver.maxGroupSize} people`, 'user') --> */}
-              <div className="overview-box__detail">
-                <svg className="overview-box__icon">
-                  <use href="/img/icons.svg#icon-star"></use>
-                </svg>
-                <span className="overview-box__label">Rating</span>
-                <span className="overview-box__text">{driver.rating} / 5</span>
-              </div>
-            </div>
-          </div>
-          <div className="description-box">
-            {/* <!-- h2.heading-secondary.ma-bt-lg= `About ${driver.name} driver` -->
-              <!-- - const parapraphs = driver.description.split('\n'); -->
-              <!-- each p in parapraphs -->
-              <!--   p.description__text= p --> */}
-          </div>
-        </div>
+      <section className="section-reviews">
+        <h2 className="review-heading">Reviews</h2>
+        <div className="reviews"></div>
       </section>
       <section className="section-cta">
         <div className="cta">

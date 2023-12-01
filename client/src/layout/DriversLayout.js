@@ -189,6 +189,7 @@ export default function DriversLayout({ cookies }) {
       </div>
       <Outlet context={drivers.data} />
       <div className="driver-page">
+        <p>Per Page</p>
         <select
           onChange={(e) => handleFilters(e, 'limit')}
           defaultValue={searchParams.get('limit')}
@@ -233,14 +234,18 @@ export default function DriversLayout({ cookies }) {
           value="prev"
           disabled={!drivers.prev ? true : false}
           onClick={(e) => handleFilters(e, 'page')}
-          className="btn btn--green"
+          className={`btn ${
+            !drivers.prev ? 'driver-page__inactive' : 'driver-page__active'
+          }`}
         >{`< Prev`}</button>
         <span className="page-number">{searchParams.get('page')}</span>
         <button
           value="next"
           disabled={!drivers.next ? true : false}
           onClick={(e) => handleFilters(e, 'page')}
-          className="btn btn--green"
+          className={`btn ${
+            !drivers.next ? 'driver-page__inactive' : 'driver-page__active'
+          }`}
         >{`Next >`}</button>
       </div>
     </>

@@ -5,11 +5,11 @@ export default function Footer() {
   return (
     <div className="footer">
       <div className="footer__logo">
-        <img src="../img/logo.png" alt="Driver Hiring logo" />
+        <img src="../img/footer-logo.png" alt="Driver Hiring logo" />
       </div>
       <ul className="footer__nav">
         <li>
-          <NavLink to="home">About us</NavLink>
+          <NavLink to="/">About us</NavLink>
         </li>
         <li>
           <a href="/#">Download apps</a>

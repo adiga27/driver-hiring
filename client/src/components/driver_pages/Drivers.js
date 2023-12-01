@@ -17,7 +17,7 @@ export default function Drivers() {
             <div key={driver._id} className="card">
               <div className="card__header">
                 <div className=".card__picture">
-                  <div className="card__picture-overlay">&nbsp;</div>
+                  {/* <div className="card__picture-overlay">&nbsp;</div> */}
                   <img
                     className="card__picture-img"
                     src={`/img/drivers/${
