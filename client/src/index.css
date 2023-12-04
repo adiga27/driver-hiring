@@ -531,10 +531,6 @@ body {
 }
 
 .section-reviews {
-  margin-top: calc(0px - var(--section-rotate));
-  padding: calc(5rem + var(--section-rotate)) 0;
-  position: relative;
-  z-index: 1000;
   background: -webkit-gradient(
     linear,
     left top,
@@ -549,89 +545,57 @@ body {
     100% calc(100% - var(--section-rotate)),
     0 100%
   );
-  -webkit-clip-path: polygon(
-    0 var(--section-rotate),
-    100% 0,
-    100% calc(100% - var(--section-rotate)),
-    0 100%
-  );
-  overflow: hidden;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
+  margin-top: 10rem;
+  height: 60rem;
+  padding: 4rem 10rem 8rem 10rem;
+  overflow-y: scroll;
+}
+.my-reviews {
+  padding: 5rem;
+  width: 85rem;
 }
 
+.review-heading {
+  font-size: 3.2rem;
+  color: #fcfcfc;
+  margin-bottom: 3rem;
+}
 .reviews {
-  padding: 5rem 0;
   display: grid;
-  grid-column-gap: 6rem;
-  grid-auto-flow: column;
-  overflow-x: scroll;
-  -ms-scroll-snap-type: x mandatory;
-  scroll-snap-type: x mandatory;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10rem;
 }
 .reviews__card {
-  width: 30rem;
-  padding: 4rem;
-  background-color: #f7f7f7;
-  border-radius: 3px;
-  -webkit-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
-  scroll-snap-align: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-.reviews:before,
-.reviews:after {
-  content: '';
-  width: 2rem;
+  border-radius: 1rem;
+  background-color: #e2e2e2;
+  padding: 3rem;
 }
 .reviews__avatar {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
+  gap: 2rem;
   margin-bottom: 2rem;
 }
 .reviews__avatar-img {
   height: 4.5rem;
   border-radius: 50%;
-  margin-right: 1.5rem;
 }
 .reviews__user {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 700;
   text-transform: uppercase;
 }
 .reviews__text {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
+  line-height: 1.6;
+  font-size: 1.6rem;
+  margin-top: 1rem;
   font-style: italic;
   font-weight: 400;
 }
 .reviews__rating {
-  margin-top: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-.reviews__star {
-  height: 2rem;
-  width: 2rem;
-  margin-right: 1px;
-}
-.reviews__star--active {
-  fill: #55c57a;
-}
-.reviews__star--inactive {
-  fill: #bbb;
+  font-size: 2rem;
+  margin-left: -1rem;
 }
 
 .section-cta {
@@ -1101,27 +1065,26 @@ body {
   width: 100%;
 }
 .card__details {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   grid-row-gap: 1.75rem;
-  grid-column-gap: 2rem;
   padding: 2.5rem 3rem;
 }
 .card__sub-heading {
-  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
   text-transform: uppercase;
   font-weight: 700;
-  grid-column: 1 / -1;
 }
 .card__text {
-  grid-column: 1 / -1;
   font-size: 1.5rem;
   font-style: italic;
   margin-top: -1rem;
   margin-bottom: 0.75rem;
 }
 .card__data {
-  font-size: 1.3rem;
+  font-size: 1.6rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1129,8 +1092,9 @@ body {
   -ms-flex-align: center;
   align-items: center;
 }
-.card__data svg {
-  margin-right: 0.7rem;
+.card__data span {
+  display: flex;
+  align-items: center;
 }
 .card__icon {
   height: 2rem;
@@ -1311,7 +1275,7 @@ body {
 }
 
 .booking-container {
-  padding: 8rem 7.5rem;
+  padding: 5rem;
 }
 .driver-search {
   display: grid;
@@ -1378,4 +1342,23 @@ body {
 }
 .driver-page select:first-child {
   margin-right: 4rem;
+}
+
+.card__footer p {
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+}
+
+ion-icon {
+  margin-right: 1rem;
+  font-size: 2.4rem;
+  color: #20bf6b;
+}
+
+.book-driver__card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5rem;
 }

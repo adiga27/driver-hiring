@@ -36,51 +36,43 @@ export default function Drivers() {
               </div>
               <div className="card__details">
                 <h4 className="card__sub-heading">
+                  <ion-icon name="location-outline"></ion-icon>
                   {driver.place ? driver.place : driver.driver.place}
                 </h4>
-                {/* <p className="card__text">${driver.summary}</p> */}
                 <div className="card__data">
-                  <svg className="card__icon">
-                    <use href="/img/icons.svg#icon-map-pin"></use>
-                  </svg>
                   <span>
+                    <ion-icon name="car-sport-outline"></ion-icon>
                     {driver.drives ? driver.drives : driver.driver.drives}
                   </span>
                 </div>
               </div>
               <div className="card__footer">
                 <p>
-                  <span className="card__footer-value">
-                    ₹{driver.price}&nbsp;
-                  </span>
-                  | <span className="card__footer-text">&nbsp;minimum</span>
+                  <ion-icon name="card-outline"></ion-icon>
+                  <span className="card__footer-value">₹{driver.price}</span>
+                  &nbsp;| minimum
                 </p>
                 {driver.pricePerKm ? (
                   <p>
+                    <ion-icon name="cash-outline"></ion-icon>₹
                     <span className="card__footer-value">
-                      ₹{driver.pricePerKm}
-                      &nbsp;
+                      {driver.pricePerKm}
                     </span>
-                    | <span className="card__footer-text">&nbsp;km</span>
+                    &nbsp;| km
                   </p>
                 ) : (
                   ''
                 )}
                 <p className="card__ratings">
-                  <svg className="overview-box__icon">
-                    <use href="/img/icons.svg#icon-star"></use>
-                  </svg>
+                  <ion-icon name="star-half-outline"></ion-icon>
                   <span className="card__footer-value">
                     {driver.rating ? driver.rating : driver.driver.rating}&nbsp;
                   </span>
-                  |
-                  <span className="card__footer-text">
-                    &nbsp;rating (
-                    {driver.ratingsQuantity
-                      ? driver.ratingsQuantity
-                      : driver.driver.ratingsQuantity}
-                    )
-                  </span>
+                  | rating (
+                  {driver.ratingsQuantity
+                    ? driver.ratingsQuantity
+                    : driver.driver.ratingsQuantity}
+                  )
                 </p>
 
                 <NavLink

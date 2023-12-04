@@ -87,28 +87,38 @@ export default function Driver({ cookies }) {
           </div>
         </div>
       </section>
+      <div className="book-driver__card">
+        <button
+          className="btn btn--green span-all-rows "
+          id="book-tour"
+          data-driver-id={`${driver._id}`}
+          onClick={handleBooking}
+        >
+          Book driver now!
+        </button>
+      </div>
       <section className="section-reviews">
         <h2 className="review-heading">Reviews</h2>
-        <div className="reviews"></div>
-      </section>
-      <section className="section-cta">
-        <div className="cta">
-          {/* <!-- .cta__img.cta__img--logo -->
-              <!--   img(src='/img/logo-white.png', alt='Nadrivers logo') -->
-              <!-- img.cta__img.cta__img--1(src=`/img/drivers/${driver.images[1]}`, alt='driver picture') -->
-              <!-- //- img.cta__img.cta__img--2(src=`/img/drivers/${driver.images[2]}`, alt='driver picture') --> */}
-          <div className="cta__content">
-            {/* <!-- h2.heading-secondary What are you waiting for? -->
-                <!-- p.cta__text= `${driver.duration} days. 1 adventure. Infinite memories. Make it yours today!` --> */}
-            <button
-              className="btn btn--green span-all-rows"
-              id="book-tour"
-              data-driver-id={`${driver._id}`}
-              onClick={handleBooking}
-            >
-              Book driver now!
-            </button>
-          </div>
+        <div className="reviews">
+          {driver?.review?.map((review) => (
+            <div className="reviews__card">
+              <div className="reviews__avatar">
+                <img
+                  className="reviews__avatar-img"
+                  src={`../img/users/${
+                    review?.user?.photo ? review.user.photo : 'default.jpg'
+                  }`}
+                  alt={`${review?.user?.name}`}
+                />
+                <h6 className="reviews__user">{review?.user?.name}</h6>
+              </div>
+              <div className="overview-driver-flex ">
+                <ion-icon name="star-half-outline"></ion-icon>
+                <span className="reviews__rating">{review.rating}/5</span>
+              </div>
+              <p className="reviews__text">{review?.review}</p>
+            </div>
+          ))}
         </div>
       </section>
     </>
