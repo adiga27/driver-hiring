@@ -6,7 +6,7 @@ export default function Reviews({ reviews }) {
       <h2 className="heading-secondary ma-bt-md">My Reviews</h2>
       <div className="reviews">
         {reviews?.map((review) => (
-          <div className="reviews__card">
+          <div className="reviews__card" key={review._id}>
             <div className="reviews__avatar">
               <img
                 className="reviews__avatar-img"

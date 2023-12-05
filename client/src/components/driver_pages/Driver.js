@@ -60,10 +60,11 @@ export default function Driver({ cookies }) {
         <div className="overview-box">
           <h2 className="overview-heading">Details</h2>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores
-            magni, accusamus nesciunt sed labore animi, consequuntur consequatur
-            facere ab quis eum? Non quam laborum dolorem temporibus!
-            Perspiciatis ab cupiditate optio.
+            Experienced and reliable driver with a passion for ensuring safe and
+            efficient transportation. Proficient in navigating diverse routes
+            and traffic conditions, demonstrating a commitment to punctuality.
+            Known for excellent communication skills and a courteous demeanor,
+            providing a comfortable and enjoyable passenger experience.
           </p>
           <div className="overview-driver-flex ">
             <ion-icon name="location-outline"></ion-icon>
@@ -101,7 +102,7 @@ export default function Driver({ cookies }) {
         <h2 className="review-heading">Reviews</h2>
         <div className="reviews">
           {driver?.review?.map((review) => (
-            <div className="reviews__card">
+            <div className="reviews__card" key={review._id}>
               <div className="reviews__avatar">
                 <img
                   className="reviews__avatar-img"

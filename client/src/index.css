@@ -338,7 +338,7 @@ body {
   height: 38vw;
   display: grid;
   grid-template-columns: 1.6fr 1fr;
-  gap: 6rem;
+  gap: 4rem;
 }
 
 .heading-box {
@@ -377,12 +377,12 @@ body {
   flex-direction: column;
   font-size: 2.2rem;
   color: #444;
-  padding: 2rem;
+  padding: 1rem;
   gap: 1rem;
 }
 .overview-heading {
   font-size: 3.2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   color: #28b487;
   font-weight: 600;
   text-transform: uppercase;
@@ -392,6 +392,7 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
+  line-height: 1.5;
 }
 .overview-driver-flex ion-icon {
   color: #20bf6b;
@@ -400,7 +401,7 @@ body {
 .overview-box p {
   font-size: 1.8rem;
   line-height: 1.6;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 .heading-box__detail {
   font-size: 1.5rem;
@@ -1361,4 +1362,61 @@ ion-icon {
   justify-content: center;
   align-items: center;
   margin-top: 5rem;
+}
+.billing-container p {
+  font-size: 2rem;
+  font-weight: 300;
+}
+.billing-driver-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+}
+.billing-driver {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #bbb;
+  padding: 2rem 0;
+}
+.billing-driver-name {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.billing-driver-name img {
+  border-radius: 50%;
+  height: 6rem;
+  width: 6rem;
+  object-fit: cover;
+}
+.billing-driver-name p {
+  font-size: 1.6rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.billing-driver p {
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+.billing-driver-price {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+.billing-driver-price p {
+  font-size: 1.6rem;
+}
+.billing-driver-price div {
+  padding: 3px 1rem;
+  color: #f7f7f7;
+  border-radius: 10px;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+.billing-paid {
+  background-color: #28b487;
+}
+.billing-unpaid {
+  background-color: #ec2e2e;
 }

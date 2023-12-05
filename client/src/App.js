@@ -102,7 +102,7 @@ function App() {
             path="my-reviews"
             element={<Reviews reviews={user.reviews} />}
           />
-          <Route path="billing" element={<Billing />} />
+          <Route path="billing" element={<Billing billing={user.bookings} />} />
         </Route>
         <Route path="drivers" element={<DriversLayout cookies={cookies} />}>
           <Route index element={<Drivers />} />
