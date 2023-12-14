@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-export default function Header({ cookies, photo, removeCookies }) {
+export default function Header({ cookies, photo, removeCookies, role }) {
   const handleLogout = () => {
     removeCookies('jwt', { path: '/' });
   };
@@ -12,12 +12,21 @@ export default function Header({ cookies, photo, removeCookies }) {
         <img src="../img/logo.png" alt="Logo" className="logo" />
       </NavLink>
       <nav>
-        <NavLink
-          to={cookies.jwt ? 'drivers' : 'login'}
-          className="navlink hire-driver"
-        >
-          Hire Driver
-        </NavLink>
+        {role?.type === 'user' || !cookies?.jwt ? (
+          <NavLink
+            to={cookies.jwt ? 'drivers' : 'login'}
+            className="navlink hire-driver"
+          >
+            Hire Driver
+          </NavLink>
+        ) : (
+          <NavLink
+            to={cookies.jwt ? 'dashboard' : 'login'}
+            className="navlink hire-driver"
+          >
+            Dashboard
+          </NavLink>
+        )}
         {!cookies.jwt ? (
           <>
             <NavLink to="login" className="navlink login">

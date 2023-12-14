@@ -5,6 +5,7 @@ const AppError = require('../util/appError');
 const User = require('./../models/userModel');
 const Email = require('./../util/email');
 const crypto = require('crypto');
+const driverController = require('./../controllers/driverController');
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {

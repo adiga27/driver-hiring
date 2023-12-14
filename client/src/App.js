@@ -23,6 +23,10 @@ import Reviews from './components/profile/Reviews';
 import Billing from './components/profile/Billing';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import ProtectedUserRole from './components/roles/ProtectedUserRole';
+import ProtectedDriverRole from './components/roles/ProtectedDriverRole';
+import DashboardLayout from './layout/DashboardLayout';
+import DriverDetails from './components/Dashboard/DriverDetails';
 
 // import Footer from './components/Footer';
 // import Header from './components/Header';
@@ -71,12 +75,17 @@ function App() {
             cookies={cookies}
             removeCookies={removeCookies}
             photo={user.photo}
+            role={user.role}
           />
         }
       >
         <Route index element={<Home />} />
         <Route path="login" element={<Login cookies={cookies} />} />
         <Route path="signup" element={<Signup cookies={cookies} />} />
+        <Route
+          path="driver-details"
+          element={<DriverDetails cookies={cookies} />}
+        />
         <Route
           path="profile"
           element={<ProfileLayout cookies={cookies} role={user.role} />}
@@ -104,13 +113,18 @@ function App() {
           />
           <Route path="billing" element={<Billing billing={user.bookings} />} />
         </Route>
-        <Route path="drivers" element={<DriversLayout cookies={cookies} />}>
-          <Route index element={<Drivers />} />
+        <Route path="/" element={<ProtectedUserRole role={user.role} />}>
+          <Route path="drivers" element={<DriversLayout cookies={cookies} />}>
+            <Route index element={<Drivers />} />
+          </Route>
+          <Route
+            path="drivers/:driverId"
+            element={<Driver cookies={cookies} />}
+          />
         </Route>
-        <Route
-          path="drivers/:driverId"
-          element={<Driver cookies={cookies} />}
-        />
+        <Route path="/" element={<ProtectedDriverRole role={user.role} />}>
+          <Route path="dashboard" element={<DashboardLayout />}></Route>
+        </Route>
       </Route>
     )
   );

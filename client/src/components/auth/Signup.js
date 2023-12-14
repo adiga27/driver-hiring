@@ -47,10 +47,11 @@ export default function Signup() {
 
   useEffect(() => {
     if (navi) {
-      navigate('/drivers');
+      if (type === 'user') navigate('/drivers');
+      if (type === 'driver') navigate('/driver-details');
       setNavi(false);
     }
-  }, [navi, navigate]);
+  }, [navi, navigate, type]);
 
   return (
     <div className="login-form">

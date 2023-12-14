@@ -65,7 +65,7 @@ reviewSchema.statics.calcAverageRatings = async function (driverId) {
   } else {
     await Driver.findByIdAndUpdate(driverId, {
       ratingsQuantity: 0,
-      rating: 4.5,
+      rating: 4.0,
     });
   }
 };

@@ -6,6 +6,7 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [navi, setNavi] = useState(false);
+  const [role, setRole] = useState('');
   const navigate = useNavigate();
 
   const loginSubmit = async (e) => {
@@ -24,18 +25,20 @@ export default function Login() {
         setEmail('');
         setPassword('');
         setNavi(true);
+        setRole(res.data.data.user.role.type);
       }
     } catch (e) {
       console.error(e);
     }
   };
-
+  console.log(role);
   useEffect(() => {
     if (navi) {
-      navigate('/drivers');
+      if (role === 'user') navigate('/drivers');
+      if (role === 'driver') navigate('/dashboard');
       setNavi(false);
     }
-  }, [navi, navigate]);
+  }, [navi, navigate, role]);
 
   return (
     <div className="login-form">

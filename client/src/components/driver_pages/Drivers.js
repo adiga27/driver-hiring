@@ -42,7 +42,7 @@ export default function Drivers() {
                 <div className="card__data">
                   <span>
                     <ion-icon name="car-sport-outline"></ion-icon>
-                    {driver.drives ? driver.drives : driver.driver.drives}
+                    {driver?.drives ? driver.drives : driver.driver.drives}
                   </span>
                 </div>
               </div>
@@ -56,7 +56,7 @@ export default function Drivers() {
                   <p>
                     <ion-icon name="cash-outline"></ion-icon>₹
                     <span className="card__footer-value">
-                      {driver.pricePerKm}
+                      {driver?.pricePerKm}
                     </span>
                     &nbsp;| km
                   </p>
@@ -66,12 +66,15 @@ export default function Drivers() {
                 <p className="card__ratings">
                   <ion-icon name="star-half-outline"></ion-icon>
                   <span className="card__footer-value">
-                    {driver.rating ? driver.rating : driver.driver.rating}&nbsp;
+                    {driver?.rating ? driver.rating : driver.driver.rating}
+                    &nbsp;
                   </span>
                   | rating (
-                  {driver.ratingsQuantity
-                    ? driver.ratingsQuantity
-                    : driver.driver.ratingsQuantity}
+                  {driver?.ratingsQuantity
+                    ? driver?.ratingsQuantity
+                    : driver?.driver?.ratingsQuantity
+                    ? driver?.driver?.ratingsQuantity
+                    : '0'}
                   )
                 </p>
 
