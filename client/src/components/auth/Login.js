@@ -14,7 +14,7 @@ export default function Login() {
     try {
       const res = await axios({
         method: 'POST',
-        url: '/api/v1/user/login',
+        url: 'https://driver-hiring.onrender.com/api/v1/user/login',
         data: {
           email,
           password,

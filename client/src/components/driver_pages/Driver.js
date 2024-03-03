@@ -10,7 +10,7 @@ export default function Driver({ cookies }) {
   useEffect(() => {
     function fetchDriver() {
       axios
-        .get(`/api/v1/user/hireDriver/${driverId}`, {
+        .get(`https://driver-hiring.onrender.com/api/v1/user/hireDriver/${driverId}`, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: 'Bearer ' + cookies.jwt,

@@ -45,7 +45,7 @@ export default function DriversLayout({ cookies }) {
     function fetchDrivers() {
       axios
         .get(
-          `/api/v1/user/hireDriver?${place}&${price}&${rating}&${sort}&${drives}&${pricePerKm}&page=${page}&limit=${limit}&fields=place,price,rating,drives,pricePerKm,photo,name,ratingsQuantity`,
+          `https://driver-hiring.onrender.com/api/v1/user/hireDriver?${place}&${price}&${rating}&${sort}&${drives}&${pricePerKm}&page=${page}&limit=${limit}&fields=place,price,rating,drives,pricePerKm,photo,name,ratingsQuantity`,
           {
             headers: {
               'Content-Type': 'application/json',

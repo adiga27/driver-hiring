@@ -24,7 +24,7 @@ const createSendToken = (user, statusCode, req, res) => {
     // secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
   });
 
-  console.log(res.cookie);
+  // console.log(res.cookie+"hhh");
   user.password = undefined;
 
   res.status(statusCode).json({
@@ -53,16 +53,17 @@ exports.signup = catchAsync(async (req, res, next) => {
 
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
-
+  console.log(email,password);
   if (!email || !password)
-    return next(new AppError('Please provide email and Password!', 400));
+  return next(new AppError('Please provide email and Password!', 400));
 
   const user = await User.findOne({ email }).select('+password');
 
   if (!user || !(await user.correctPassword(password, user.password)))
-    return next(new AppError('Username or Password is Inccorect!', 401));
+  return next(new AppError('Username or Password is Inccorect!', 401));
 
   createSendToken(user, 200, req, res);
+  console.log("jee");
 });
 
 exports.protect = catchAsync(async (req, res, next) => {

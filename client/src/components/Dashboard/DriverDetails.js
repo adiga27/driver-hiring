@@ -15,7 +15,7 @@ function DriverDetails({ cookies }) {
     try {
       const res = await axios({
         method: 'POST',
-        url: '/api/v1/driver/createDriver',
+        url: 'https://driver-hiring.onrender.com/api/v1/driver/createDriver',
         data: {
           price,
           pricePerKm,

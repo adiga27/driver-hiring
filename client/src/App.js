@@ -49,7 +49,7 @@ function App() {
   useEffect(() => {
     function fetchUser() {
       axios
-        .get(`/api/v1/user/me`, {
+        .get(`https://driver-hiring.onrender.com/api/v1/user/me`, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: 'Bearer ' + cookies.jwt,
