@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 
 export default function Signup() {
+  const [cookies, setCookies] = useCookies();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -39,6 +41,11 @@ export default function Signup() {
         setContact('');
         setType('');
         setNavi(true);
+        setCookies('jwt',res.data.token,{
+          expires: new Date(
+            Date.now() + 90 * 24 * 60 * 60 * 1000
+          ),
+        });
       }
     } catch (e) {
       console.error(e);

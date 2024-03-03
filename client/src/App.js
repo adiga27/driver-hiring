@@ -28,24 +28,10 @@ import ProtectedDriverRole from './components/roles/ProtectedDriverRole';
 import DashboardLayout from './layout/DashboardLayout';
 import DriverDetails from './components/Dashboard/DriverDetails';
 
-// import Footer from './components/Footer';
-// import Header from './components/Header';
-// import Overview from './components/Overview';
-// import Profile from './components/Profile';
-
-// const router = createBrowserRouter(
-//   createRoutesFromElements(
-//     <Route path="/" element={<RootLayout />}>
-//       <Route index element={<Home />} />
-//       <Route path="about" element={<About />} />
-//       <Route path="help" element={<HelpLayout />}>
-//         <Route path="faq" element={<Faq />} />
-//         <Route path="contact" element={<Contact />} action={actionContact} />
-//       </Route>
-
 function App() {
   const [user, setUser] = useState('');
   const [cookies, setCookies, removeCookies] = useCookies();
+  console.log(cookies.jwt);
   useEffect(() => {
     function fetchUser() {
       axios
