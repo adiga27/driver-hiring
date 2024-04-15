@@ -16,7 +16,7 @@ export default function Login() {
     try {
       const res = await axios({
         method: 'POST',
-        url: 'https://driver-hiring.onrender.com/api/v1/user/login',
+        url: `${process.env.REACT_APP_SERVER}/api/v1/user/login`,
         data: {
           email,
           password,

@@ -1476,3 +1476,35 @@ ion-icon {
   border-bottom-right-radius: 8rem;
   height: 100%;
 }
+
+.post-review{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.post-review-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 2rem;
+}
+
+.post-review-rating{
+  margin: 0;
+  width: 6.5rem!important;
+  display: inline-block!important;
+  padding-right: 0.5rem!important;
+}
+
+.post-review-comm{
+  display: flex!important;
+  flex-direction: column!important;
+  gap: 0.5rem!important;
+  font-size: 1.8rem;
+}
+.post-review-button{
+  align-self: center;
+}
+

@@ -30,12 +30,11 @@ import DriverDetails from './components/Dashboard/DriverDetails';
 
 function App() {
   const [user, setUser] = useState('');
-  const [cookies, setCookies, removeCookies] = useCookies();
-  console.log(cookies.jwt);
+  const [cookies, _, removeCookies] = useCookies();
   useEffect(() => {
     function fetchUser() {
       axios
-        .get(`https://driver-hiring.onrender.com/api/v1/user/me`, {
+        .get(`${process.env.REACT_APP_SERVER}/api/v1/user/me`, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: 'Bearer ' + cookies.jwt,

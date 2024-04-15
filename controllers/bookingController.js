@@ -11,9 +11,8 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
-    // success_url: `${req.protocol}://${req.get('host')}/drivers`,
-    success_url: `${req.protocol}://127.0.0.1:3000/drivers`,
-    cancel_url: `${req.protocol}://127.0.0.1:3000/drivers/${driver._id}`,
+    success_url: `${process.env.REACT_APP_STATIC}/drivers`,
+    cancel_url: `${process.env.REACT_APP_STATIC}/drivers/${driver._id}`,
     customer_email: req.user.email,
     client_reference_id: req.params.driverId,
     mode: 'payment',
@@ -23,7 +22,6 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
           unit_amount: driver.price,
           product_data: {
             name: `${driver.name} Driver`,
-            // description: driver.summary,
             images: [
               `${req.protocol}://${req.get('host')}/public/img/drivers/${
                 driver?.photo ? driver.photo : 'default.jpg'

@@ -14,7 +14,7 @@ export default function Setting({ cookies, userName, userContact, userPhoto }) {
     try {
       const res = await axios({
         method: 'PATCH',
-        url: 'https://driver-hiring.onrender.com/api/v1/user/updateMe',
+        url: `${process.env.REACT_APP_SERVER}/api/v1/user/updateMe`,
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: 'Bearer ' + cookies.jwt,
@@ -36,7 +36,7 @@ export default function Setting({ cookies, userName, userContact, userPhoto }) {
     try {
       const res = await axios({
         method: 'PATCH',
-        url: 'https://driver-hiring.onrender.com/api/v1/user/updatePassword',
+        url: `${process.env.REACT_APP_SERVER}/api/v1/user/updatePassword`,
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + cookies.jwt,

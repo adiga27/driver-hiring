@@ -6,11 +6,13 @@ export default function Driver({ cookies }) {
   const { driverId } = useParams();
 
   const [driver, setDriver] = useState([]);
+  const [review,setReview] = useState();
+  const [rating,setRating] = useState();
 
   useEffect(() => {
     function fetchDriver() {
       axios
-        .get(`https://driver-hiring.onrender.com/api/v1/user/hireDriver/${driverId}`, {
+        .get(`${process.env.REACT_APP_SERVER}/api/v1/user/hireDriver/${driverId}`, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: 'Bearer ' + cookies.jwt,
@@ -27,7 +29,7 @@ export default function Driver({ cookies }) {
 
   const handleBooking = () => {
     axios
-      .get(`/api/v1/booking/checkout-session/${driverId}`, {
+      .get(`${process.env.REACT_APP_SERVER}/api/v1/booking/checkout-session/${driverId}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + cookies.jwt,
@@ -40,6 +42,29 @@ export default function Driver({ cookies }) {
       })
       .catch((e) => console.error(e));
   };
+
+  const handleReview = (e) => {
+    e.preventDefault();
+    axios.post(`${process.env.REACT_APP_SERVER}/api/v1/driver/${driverId}/review`,{
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + cookies.jwt,
+      },
+      data:{
+        rating,
+        review
+      }
+    }).then((res) =>{
+      if(res.data.status !== 'success'){
+        return new Error("Failed to post review");
+      }
+      setRating("");
+      setReview("");
+      window.location.reload();
+    }).catch(e =>{
+      console.error(e);
+    })
+  }
   return (
     <>
       <section className="section-header">
@@ -121,6 +146,39 @@ export default function Driver({ cookies }) {
             </div>
           ))}
         </div>
+      </section>
+      <section className='post-review'>
+        <h2 className='overview-heading'>Post Review</h2>
+        <form className='post-review-form' onSubmit={(e) =>handleReview}>
+          <div className='post-review-comm'>
+            <label >Rating</label>
+            <div>
+              <input type='number' min="1" max="5" 
+                onWheel={ event => event.currentTarget.blur()}
+                placeholder='4.3'
+                step="any"
+                className='form__input post-review-rating'
+                onChange={(e) => setRating(e.target.value)}
+                /><span> / 5</span>
+            </div>
+          </div>
+          <div className='post-review-comm'>      
+            <label>Review</label>    
+            <textarea rows="10" cols="50" 
+              placeholder='He is best driver seen so far'
+              className='form__input textarea-review'
+              required
+              onChange={(e) => setReview(e.target.value)}
+              />
+          </div>
+          <button
+            className="btn btn--green span-all-rows post-review-button"
+            id="review-dirver"
+            type='submit'
+            >
+            Submit
+          </button>
+          </form>
       </section>
     </>
   );
